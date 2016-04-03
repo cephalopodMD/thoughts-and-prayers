@@ -16,13 +16,14 @@ statuses. The Tweets returned by the default access level are the same,
 so if two different clients connect to this endpoint, they will see the
 same Tweets."
 
-This module consumes tweets from the sample Public stream and putes them
+This module consumes tweets from the sample Public stream and puts them
 on a queue. The tweets are then consumed from the queue by writing them
 to a file in JSON format as sent by twitter, with one tweet per line.
 This file can then be processed and filtered as necessary to create a
 corpus of tweets for use with Machine Learning, Natural Language Processing,
 and other Human-Centered Computing applications.
 """
+
 from __future__ import print_function
 
 import sys
@@ -167,7 +168,7 @@ def main():
     try:
         while True:
             try:
-                stream.sample()  # blocking!
+                stream.sample(languages=['en'])  # blocking!
             except KeyboardInterrupt:
                 print('KEYBOARD INTERRUPT', file=sys.stderr)
                 return
