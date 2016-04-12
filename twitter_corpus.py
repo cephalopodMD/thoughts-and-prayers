@@ -168,7 +168,9 @@ def main():
     try:
         while True:
             try:
+                
                 stream.sample(languages=['en'])  # blocking!
+                
             except KeyboardInterrupt:
                 print('KEYBOARD INTERRUPT', file=sys.stderr)
                 return
