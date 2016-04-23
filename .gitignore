@@ -6,7 +6,8 @@
 tweet-stream.json
 # Custom configuration settings
 config.yaml
-
+scraper/json/
+scraper/output/
 
 ############
 ## Libraries
