@@ -56,9 +56,9 @@ def limit_handled(cursor):
         try:
             yield cursor.next()
         except RateLimitError:
-            time.sleep(15 * 60)
+            return
         except TweepError:
-            time.sleep(15 * 60)
+            return
 
 def main():
     staticconf.YamlConfiguration(CONFIG_FILE)
@@ -72,10 +72,10 @@ def main():
     )
     api = API(auth)
     for tweet in limit_handled(Cursor(api.search,
-            q=[":)"],#q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
+        q='from:cnnbrk OR from:BBCBreaking', #q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
             since="2016-04-20",
             until="2016-04-21",
-            lang="en").items(3)):
+            lang="en").items(5)):
         print(json.dumps(tweet._json))
 
 if __name__ == '__main__':
