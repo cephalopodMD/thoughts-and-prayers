@@ -1,1 +1,1 @@
-import feature_extractors
+from feature_extractors import *

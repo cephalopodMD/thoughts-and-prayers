@@ -72,10 +72,11 @@ def main():
     )
     api = API(auth)
     for tweet in limit_handled(Cursor(api.search,
-        q='from:cnnbrk OR from:BBCBreaking', #q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
+        q='from:cnnbrk OR from:BBCBreaking OR from:CNN OR from:BBCWorld OR from:nytimes OR from:TIME OR from:AP OR from:Reuters OR from:NPR OR from:BreakingNews OR from:FoxNews OR from:WSJ OR from:AJEnglish OR from:TheEconomist OR from:CBSNews OR from:washingtonpost OR from:BBCNews OR from:NewsHour OR from:guardiannews', 
+            #q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
             since="2016-04-20",
             until="2016-04-21",
-            lang="en").items(5)):
+            lang="en").items()):
         print(json.dumps(tweet._json))
 
 if __name__ == '__main__':
