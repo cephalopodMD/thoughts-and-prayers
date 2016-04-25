@@ -30,7 +30,7 @@ from __future__ import print_function
 import sys
 import threading
 import Queue
-import time
+from time import sleep
 import socket
 import httplib
 
@@ -56,9 +56,9 @@ def limit_handled(cursor):
         try:
             yield cursor.next()
         except RateLimitError:
-            return
+            sleep(15*60 + 30)
         except TweepError:
-            return
+            sleep(15*60 + 30)
 
 def main():
     staticconf.YamlConfiguration(CONFIG_FILE)
@@ -71,13 +71,22 @@ def main():
         staticconf.read_string('twitter.access_token_secret'),
     )
     api = API(auth)
-    for tweet in limit_handled(Cursor(api.search,
-        q='from:cnnbrk OR from:BBCBreaking OR from:CNN OR from:BBCWorld OR from:nytimes OR from:TIME OR from:AP OR from:Reuters OR from:NPR OR from:BreakingNews OR from:FoxNews OR from:WSJ OR from:AJEnglish OR from:TheEconomist OR from:CBSNews OR from:washingtonpost OR from:BBCNews OR from:NewsHour OR from:guardiannews', 
-            #q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
-            since="2016-04-20",
-            until="2016-04-21",
-            lang="en").items()):
-        print(json.dumps(tweet._json))
+
+    big_ben_ids = [723360691457945600, 723375789467553793, 723390890664824834, 723405988221489154, 
+                   723421087703261186, 723436186644025344, 723451541563138052, 723466386304057344, 
+                   723481486737985536, 723497089410457600, 723511939465392128, 723528048931430400,
+                   723541884208091137, 723556981991202816, 723572081485615104, 723587184276721665,
+                   723602282374414338, 723617381017374720, 723632480964759553, 723647581516124160,
+                   723662932664524800, 723678284538589184, 723693384272121857, 723709493939453952,
+                   723723076614164480]
+
+    for startid, endid in zip(big_ben_ids, big_ben_ids[1:]):
+        for tweet in limit_handled(Cursor(api.search,
+                q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
+                since_id=str(startid),
+                max_id=str(endid),
+                lang="en").items(2500)):
+            print(json.dumps(tweet._json))
 
 if __name__ == '__main__':
     sys.exit(main())
