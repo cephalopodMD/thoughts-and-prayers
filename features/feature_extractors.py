@@ -58,8 +58,25 @@ def camel_case_words(tweet_text):
     all_caps_re = re.compile("(^|\s)[A-Z][a-z]+(\s|\Z)")
     return len(all_caps_re.findall(tweet_text))
 
+#takes arbitrary string and character
+#returns number of times character occurs in string 
+def num_occurrences(string, char):
+	count = 0
+	for c in string:
+		if c == char:
+			count += 1
+	return count
+
 #takes tweet text
 #returns dict of punctuation counts
 def punctuation_counts(tweet_text):
-    pass
-    #incomplete
+	period_count = num_occurrences(tweet_text, ".")
+	comma_count = num_occurrences(tweet_text, ",")
+	semicolon_count = num_occurrences(tweet_text, ";")
+	colon_count = num_occurrences(tweet_text, ":")
+	exclamation_count = num_occurrences(tweet_text, "!")
+	apostrophe_count = num_occurrences(tweet_text, "'")
+	quotation_count = num_occurrences(tweet_text, "\"")
+	hyphen_count = num_occurrences(tweet_text, "-")
+	return {"period":period_count, "comma":comma_count, "semicolon":semicolon_count, "colon":colon_count, "exclamation":exclamation_count, "apostrophe":apostrophe_count, "quotation":quotation_count, "hyphen":hyphen_count}
+
