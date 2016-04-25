@@ -7,7 +7,7 @@ import re
 
 #takes the full tweet text
 def mention_count(tweet_text):
-    mention_re = re.compile(r"@[a-zA-Z0-9]")
+    mention_re = re.compile(r"(^|\s)@[a-zA-Z0-9]")
     return len(mention_re.findall(tweet_text))
     
 #takes the full tweet text
@@ -58,6 +58,7 @@ def camel_case_words(tweet_text):
     all_caps_re = re.compile("(^|\s)[A-Z][a-z]+(\s|\Z)")
     return len(all_caps_re.findall(tweet_text))
 
+#utility function
 #takes arbitrary string and character
 #returns number of times character occurs in string 
 def num_occurrences(string, char):
@@ -66,6 +67,7 @@ def num_occurrences(string, char):
 		if c == char:
 			count += 1
 	return count
+    
 #takes tweet text
 #returns dict of punctuation counts
 def punctuation_counts(tweet_text):
