@@ -1,7 +1,7 @@
 # methods for getting features of tweets go here
 # __init__ is so you can so you can say
 # from features import function
-#to import a function into your library
+# to import a function into your library
 
 import re
 
@@ -66,7 +66,6 @@ def num_occurrences(string, char):
 		if c == char:
 			count += 1
 	return count
-
 #takes tweet text
 #returns dict of punctuation counts
 def punctuation_counts(tweet_text):
@@ -80,3 +79,12 @@ def punctuation_counts(tweet_text):
 	hyphen_count = num_occurrences(tweet_text, "-")
 	return {"period":period_count, "comma":comma_count, "semicolon":semicolon_count, "colon":colon_count, "exclamation":exclamation_count, "apostrophe":apostrophe_count, "quotation":quotation_count, "hyphen":hyphen_count}
 
+#takes tweet text
+#returns dict of punctuation counts
+#this will be about 8 times faster in theory since it's only one pass'
+def alt_punctuation_counts(tweet_text):
+    result = {'.':0,',':0,';':0,':':0,'!':0,'?':0,'\'':0,'"':0,'-':0}
+    for char in tweet_text:
+        if char in result:
+            result[char] += 1
+    return result
