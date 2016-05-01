@@ -5,8 +5,13 @@
 
 import re
 
+#takes the full tweet
+def hashtag_count(tweet_text):
+    return len([ word for word in tweet_text.split() if word.startswith("#") ])
+
 #takes the full tweet text
 def mention_count(tweet_text):
+	# try this one: re.compile(r' (?<=^|(?<=[^a-zA-Z0-9-_\\.]))@([A-Za-z]+[A-Za-z0-9_]+)')
     mention_re = re.compile(r"(^|\s)@[a-zA-Z0-9]")
     return len(mention_re.findall(tweet_text))
     
