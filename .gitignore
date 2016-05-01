@@ -2,6 +2,8 @@
 ## Project
 ############
 
+classifier/hourly.csv
+
 # Generated corpus files
 tweet-stream.json
 # Custom configuration settings
