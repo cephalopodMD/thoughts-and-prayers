@@ -5,6 +5,17 @@
 
 import re
 
+mention_re = re.compile(r"(^|\s)@[a-zA-Z0-9]")
+phone_re = re.compile(r"(\+?[0-9]\s?)?(\(?[0-9][0-9][0-9]\(?)?\s?\-?\s?[0-9][0-9][0-9]\s?\-?\s?[0-9][0-9][0-9][0-9]")
+email_re = re.compile(r"[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+")
+happy_re = re.compile(r"(\:|\;|\B)\-?(\)|\D|\])+")
+sad_re = re.compile(r"(\:|\;|\B)\,?\'?\-?(\(|\[)+")
+all_caps_re = re.compile("[A-Z]")
+all_caps_re = re.compile("(^|\s)[A-Z]+(\s|\Z)")
+all_caps_re = re.compile("(^|\s)[a-z]+(\s|\Z)")
+all_caps_re = re.compile("(^|\s)[A-Z][a-z]+(\s|\Z)")
+print("yolo")
+
 #takes the full tweet
 def hashtag_count(tweet_text):
     return len([ word for word in tweet_text.split() if word.startswith("#") ])
@@ -12,24 +23,23 @@ def hashtag_count(tweet_text):
 #takes the full tweet text
 def mention_count(tweet_text):
 	# try this one: re.compile(r' (?<=^|(?<=[^a-zA-Z0-9-_\\.]))@([A-Za-z]+[A-Za-z0-9_]+)')
-    mention_re = re.compile(r"(^|\s)@[a-zA-Z0-9]")
+    
     return len(mention_re.findall(tweet_text))
     
 #takes the full tweet text
 def phone_count(tweet_text):
-    phone_re = re.compile(r"(\+?[0-9]\s?)?(\(?[0-9][0-9][0-9]\(?)?\s?\-?\s?[0-9][0-9][0-9]\s?\-?\s?[0-9][0-9][0-9][0-9]")
+    
     return len(phone_re.findall(tweet_text))
     
 #takes the full tweet text
 def email_count(tweet_text):
-    email_re = re.compile(r"[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+")
+    
     return len(email_re.findall(tweet_text))
     
 #takes the full tweet text
 #returns dict of happy and sad counts
 def emoticons(tweet_text):
-    happy_re = re.compile(r"(\:|\;|\B)\-?(\)|\D|\])+")
-    sad_re = re.compile(r"(\:|\;|\B)\,?\'?\-?(\(|\[)+")
+    
     happy_count = len(happy_re.findall(tweet_text))
     sad_count = len(sad_re.findall(tweet_text))
     return {"happy":happy_count, "sad":sad_count}
@@ -41,26 +51,26 @@ def tweet_length(tweet_text):
 #takes tweet text
 #returns float fraction of characters in A-Z
 def capital_char_fraction(tweet_text):
-    all_caps_re = re.compile("[A-Z]")
+    
     caps_count = len(all_caps_re.findall(tweet_text))
     return caps_count / float(len(tweet_text))
 
 #takes tweet text
 #returns count of all caps words
 def all_caps_words(tweet_text):
-    all_caps_re = re.compile("(^|\s)[A-Z]+(\s|\Z)")
+    
     return len(all_caps_re.findall(tweet_text))
 
 #takes tweet text
 #returns count of lowercase words
 def lowercase_words(tweet_text):
-    all_caps_re = re.compile("(^|\s)[a-z]+(\s|\Z)")
+    
     return len(all_caps_re.findall(tweet_text))
 
 #takes tweet text
 #returns count of camel case (eg. "The Quick Brown Fox") words
 def camel_case_words(tweet_text):
-    all_caps_re = re.compile("(^|\s)[A-Z][a-z]+(\s|\Z)")
+    
     return len(all_caps_re.findall(tweet_text))
 
 #utility function
@@ -90,7 +100,7 @@ def punctuation_counts(tweet_text):
 #returns dict of punctuation counts
 #this will be about 8 times faster in theory since it's only one pass'
 def alt_punctuation_counts(tweet_text):
-    result = {'.':0,',':0,';':0,':':0,'!':0,'?':0,'\'':0,'"':0,'-':0}
+    result = {'.':0,',':0,';':0,':':0,'!':0,'?':0,'\'':0,'"':0,'-':0,'_':0}
     for char in tweet_text:
         if char in result:
             result[char] += 1
