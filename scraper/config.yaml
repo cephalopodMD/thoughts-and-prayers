@@ -1,0 +1,11 @@
+
+# Twitter account info.
+twitter:
+  # Go to http://dev.twitter.com and create an app.
+  # The consumer key and secret will be generated for you after
+  consumer_key:  3tSIFg5Gz8kBL7JZQkPCJz2xd
+  consumer_secret:  oSeL4xkYVZTyyDtIn7wSeEwFqrLWFzyu6bNbhTIyTKOPjOoORq
+  # After the step above, you will be redirected to your app's page.
+  # Create an access token under the the "Your access token" section
+  access_token:  258662575-6EnRGo0wBK81uSySYcd6kBfpB87D7pv8vMSfTOCK
+  access_token_secret:  rldExZIK6QDPaRob1Edhv7T6UkgCaMjosaFUioCLzBPqv

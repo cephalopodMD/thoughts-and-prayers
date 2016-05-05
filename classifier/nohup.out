@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/usr/local/bin/bumblebee-indicator", line 173, in <module>
+    indicator.main()
+  File "/usr/local/bin/bumblebee-indicator", line 169, in main
+    gtk.main()
+KeyboardInterrupt

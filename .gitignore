@@ -3,11 +3,11 @@
 ############
 
 classifier/hourly.csv
-
+.ipynb_checkpoints/
 # Generated corpus files
 tweet-stream.json
 # Custom configuration settings
-config.yaml
+#config.yaml
 scraper/json/
 scraper/output/
 
