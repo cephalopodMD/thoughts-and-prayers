@@ -99,7 +99,7 @@ def main():
                    727603646221914113,
                    727619000348348416]
 
-    for startid, endid in zip(big_ben_ids, big_ben_ids[1:]):
+    for startid, endid in zip(big_ben_ids[13:], big_ben_ids[14:]):
         for tweet in limit_handled(Cursor(api.search,
                 q=' OR '.join('qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
                 since_id=str(startid),
